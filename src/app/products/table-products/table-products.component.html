@@ -1,0 +1,106 @@
+<div class="border">
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-3 text-center">AI MODELING</div>
+            <div class="col col-2 text-center">DEVELOPMENT TIME</div>
+            <div class="col col-2 text-center">FILTERS</div>
+            <div class="col col-2 text-center">INPUT QUERY</div>
+            <div class="col col-3 text-center">TOTAL</div>
+        </li>
+        <form [formGroup]="tableForm" (ngSubmit)="getValues()">
+            <li *ngFor="let ai of aiModelingParams; let i = index" [class]="backgroundCard(i+1)">
+                <div class="col-tabla col col-3">
+                    <img [src]="icons[i]">
+                    <h2 for="aiRadio"> {{ai.value}} </h2>
+                </div>
+                <div class="col-tabla col col-2">
+                    <div *ngFor="let time of developmentTimeParams; let i = index" class="form-check">
+                        <input class="form-check-input"
+                            type="checkbox"
+                            [value]="time.value"
+                            [id]="time.id"
+                            formControlName="devTime"
+                            (change)="getProducts( $event, time.id, ai.id, time.value, 'developmentTime')"
+                            >
+                        <label class="form-check-label" for="radioMasculino">
+                            {{ time.value | uppercase }}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-tabla col col-2">
+                    <div *ngFor="let filters of filterParams; let i = index" class="form-check">
+                        <input class="form-check-input"
+                            type="checkbox"
+                            [value]="filters.value"
+                            [id]="filters.id"
+                            formControlName="filters"
+                            (change)="getProducts( $event, filters.id, ai.id, filters.value,'filter')"
+                            >
+                        <label class="form-check-label" for="radioMasculino">
+                        </label>
+                        {{ filters.value | uppercase}}
+                    </div>
+                </div>
+                <div class="col-tabla col col-2">
+                    <div *ngFor="let input of  inputQueryParams; let i = index" class="form-check">
+                        <input class="form-check-input"
+                            type="checkbox"
+                            [value]="input.value"
+                            [id]="input.id"
+                            formControlName="inputQuery"
+                            (change)="getProducts( $event, input.id, ai.id, input.value ,'inputQuery')"
+                            >
+                        <label class="form-check-label" for="radioMasculino">
+                            {{ input.value | uppercase }}
+                        </label>
+                    </div>
+                </div>
+                <div class="col col-3">
+                    <h2> {{ price[i] | currency}} </h2>
+                </div>
+
+            </li>
+        </form>
+    </ul>
+</div>
+<div *ngIf="infoTitles.length !== 0"  class="border-2">
+    <div class="card info" style="width: 18rem;">
+        <div class="card-body">
+            <h2 class="card-title">Total</h2>
+            <div *ngFor="let title of infoTitles, let i = index">
+                <mat-icon class="mt-4">smart_toy</mat-icon>
+                <h3 class="card-subtitle mb-2 text-muted"> {{title}} </h3>
+
+                <b *ngIf="infoTimes"> Development Time: </b>
+                <span *ngFor="let time of infoTimes[i]; let j = index">
+                    {{ time  }}{{((infoTimes[i].length - 1) - j) === 0 ? "" : ","  }}
+
+                </span>
+
+                <br>
+                <b> Filters: </b>
+                <span *ngFor="let filter of infoFilters[i], let j = index">
+                    {{filter | lowercase }}{{((infoFilters[i].length - 1) - j) === 0 ? "" : ","  }}
+                </span>
+
+                <br>
+                <b> Input query: </b>
+                <span *ngFor="let input of infoInputs[i], let j = index">
+                    {{input | lowercase }}{{((infoInputs[i].length - 1) - j) === 0 ? "" : ","  }}
+                </span>
+
+            </div>
+        </div>
+    </div>
+    <div class="row info">
+        <hr size="3.5px">
+        <h3 class="text-end"> TOTAL: {{ price[0] + price[1]  | currency }}</h3>
+        <div class="col">
+            <button type="submit" class="btn btn-lg float-end">
+                Checkout
+                <mat-icon class="p-1">lock</mat-icon>
+            </button>
+        </div>
+
+    </div>
+</div>

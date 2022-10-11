@@ -1,0 +1,143 @@
+.container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h2 {
+    font-size: 26px;
+    margin: 20px 0;
+    text-align: center;
+
+    small {
+        font-size: 0.5em;
+    }
+}
+
+.text-center{
+    color: white;
+}
+
+.col-tabla {
+    max-height: max-content;
+    border-right: solid 1px #62afff !important;
+    border: none;
+    text-align: center;
+}
+
+.card-body {
+    white-space: pre-line !important;
+}
+img{
+    width: 100px;
+    height: 90px;
+}
+.form-check-input{
+    border: none;
+}
+.border {
+    background-color: #deeeff;
+    border-radius: 6px;
+    padding-bottom: 30px;
+}
+
+.responsive-table {
+    padding-left: 0em !important;
+
+    li {
+        border-radius: 6px;
+        padding: 25px 30px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 25px;
+    }
+
+    .table-header {
+        background-color: rgb(56, 153, 256);
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+    .primer-card {
+        padding: 0px;
+        background-color: #deeeff !important;
+    }
+
+    .segundo-card {
+        padding: 0px;
+        background-color: #bcddff !important;
+    }
+
+    .primer-card,
+    .segundo-card {
+        margin: 0px 30px 15px;
+    }
+
+    .table-row {
+        background-color: #ffffff;
+        box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-row>.col {
+        padding: 20px;
+        justify-content: center;
+
+    }
+
+    @media all and (max-width: 767px) {
+        .table-header {
+            display: none;
+        }
+
+        li {
+            display: block;
+        }
+
+        .col {
+
+            flex-basis: 100%;
+
+        }
+
+        .col {
+            display: flex;
+            padding: 10px 0;
+
+            &:before {
+                color: #6C7A89;
+                padding-right: 10px;
+                content: attr(data-label);
+                flex-basis: 50%;
+                text-align: right;
+            }
+        }
+    }
+}
+
+.border-2 {
+    border: solid 1px rgb(56, 153, 256);
+    border-radius: 6px;
+    margin-top: 20px;
+}
+.info{
+    margin: 0px 30px 15px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none
+}
+hr{
+    color: rgb(56, 153, 256)
+}
+.card-title{
+    color: rgb(56, 153, 256);
+    text-transform: uppercase;
+    text-align: left !important
+    ;
+}
+.btn{
+    border-radius: 25px;
+    background: rgb(56,153,256);
+    color: white;
+
+}
