@@ -136,8 +136,6 @@ export class TableProductsComponent implements OnInit {
                 }
             )
 
-
-            console.log(this.totalList)
         }
 
         if (isChecked && order === 1) {
@@ -176,19 +174,6 @@ export class TableProductsComponent implements OnInit {
 
     getInfoCard(isChecked: any, event: any, value: any, order: any) {
 
-        // console.log("isChecked", isChecked)
-        // console.log("event", event)
-        // console.log("value", value)
-        // console.log("order", order)
-
-        // console.log(this.aiModelingParams);
-        // console.log(this.developmentTimeParams);
-        // console.log(this.filterParams);
-        // console.log(this.inputQueryParams);
-        // console.log("this.orderParams");
-        // console.log(this.orderParams);
-
-
         if (isChecked && order === 1) {
             let title = this.aiModelingParams[order - 1].value;
             !this.infoTitles.includes(title) ? this.infoTitles.splice(0, 1, title) : ""
@@ -215,36 +200,12 @@ export class TableProductsComponent implements OnInit {
             }
 
         }
-        // else if(!isChecked && order === 1){
 
-        //     for (let i in this.developmentTimeParams) {
-        //         if (this.developmentTimeParams[i].value.includes(value)) {
-        //             this.timesPyscis.push(value);
-        //             this.infoTimes[0] = this.timesPyscis;
-
-        //         }
-        //     }
-
-        //     for (let i in this.filterParams) {
-        //         if (this.filterParams[i].value.includes(value)) {
-        //             this.filterPyscis.push(value)
-        //             this.infoFilters[0] = this.filterPyscis;
-        //         }
-        //     }
-
-        //     for (let i in this.inputQueryParams) {
-        //         if (this.inputQueryParams[i].value.includes(value)) {
-        //             this.inputPyscis.push(value);
-        //             this.infoInputs[0] = this.inputPyscis;
-        //         }
-        //     }
-
-        // }
 
         if (isChecked && order === 2) {
             let title = this.aiModelingParams[order - 1].value;
             !this.infoTitles.includes(title) ? this.infoTitles.splice(1, 2, title) : ""
-            console.log(this.infoTitles.length);
+
             for (let i in this.developmentTimeParams) {
                 if (this.developmentTimeParams[i].value.includes(value)) {
 
@@ -271,14 +232,17 @@ export class TableProductsComponent implements OnInit {
 
     }
 
-    sendOrder( order: any, products: any ){
-
-        let data =  {
-            order,
-            products
-        }
-        console.log(data);
-
+    sendOrder(){
+        let data = {
+            "client": localStorage.getItem('name'),
+            "date": new Date(),
+            "ai_modeling": this.infoTitles,
+            "development_time": this.infoTimes,
+            "input_query": this.infoInputs,
+            "filters": this.infoFilters,
+            "total": [this.price[0], this.price[1]]
+       }
+       this.productsService.sendOrder(data)
 
     }
 }

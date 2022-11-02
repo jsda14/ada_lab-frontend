@@ -41,6 +41,8 @@ const BAG_ICON = `
 })
 export class TableMainComponent implements OnInit {
 
+    username!: string | null;
+
     constructor(iconRegistry: MatIconRegistry,
                 sanitizer: DomSanitizer,
                 private router: Router) {
@@ -49,6 +51,7 @@ export class TableMainComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.username = localStorage.getItem('name');
     }
 
     logout() {

@@ -26,7 +26,13 @@ export class ProductsService {
     }
 
     sendOrder( data: any) {
-        console.log(data);
-        
+        console.log("si entré");
+
+        const url = environment.baseUrl;
+        return this.http.post( `${url}/orders/sendOrder`, data)
+                   .subscribe( resp => {
+                        console.log(resp);
+                   })
+
     }
 }

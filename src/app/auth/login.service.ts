@@ -30,6 +30,7 @@ export class LoginService {
             .pipe(
                 tap( resp => {
                     localStorage.setItem('token', resp.token!)
+                    localStorage.setItem('name', resp.name!)
                 }),
                 map( resp =>  resp.ok ),
                 catchError ( err => of(err.error.error))
